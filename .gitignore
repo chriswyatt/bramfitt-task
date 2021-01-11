@@ -1,0 +1,6 @@
+# IntelliJ IDEA
+/.idea/
+
+# Direnv
+/.direnv/
+/.envrc
