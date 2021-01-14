@@ -4,3 +4,9 @@
 # Direnv
 /.direnv/
 /.envrc
+
+# Python
+**/__pycache__/
+
+/protobuf/*_pb2.py
+/bramfitt_db

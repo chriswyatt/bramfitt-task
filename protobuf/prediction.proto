@@ -1,0 +1,55 @@
+syntax = "proto3";
+package bramfitt;
+
+import "google/protobuf/timestamp.proto";
+
+message PredictionTiming {
+  int32 countdown_server_adjustment_nanoseconds = 1;
+  google.protobuf.Timestamp source_timestamp = 2;  // source
+  google.protobuf.Timestamp inserted_at = 3;  // insert
+  google.protobuf.Timestamp read_at = 4;  // read
+  google.protobuf.Timestamp sent_at = 5;  // sent
+  google.protobuf.Timestamp received_at = 6;  // received
+}
+
+message Prediction {
+  string prediction_id = 1;  // id
+  enum OperationType {
+    NEW_OR_UPDATED = 0;
+    INVALIDATED = 1;
+  };
+  OperationType operation_type = 2;
+  string vehicle_id = 3;
+  string naptan_id = 4;
+  string station_name = 5;
+  string line_id = 6;
+  string line_name = 7;
+  string platform_name = 8;
+  enum Direction {
+    INBOUND = 0;
+    OUTBOUND = 1;
+  }
+  Direction direction = 9;
+  uint32 bearing = 10;
+  string destination_naptan_id = 11;
+  string destination_name = 12;
+  google.protobuf.Timestamp prediction_sent_at = 13;  // maps to timestamp
+  int32 seconds_to_station = 14;
+  string current_location = 15;
+  string towards = 16;
+  google.protobuf.Timestamp expected_arrival_at = 17;
+  google.protobuf.Timestamp invalidated_at = 18;  // maps to timeToLive
+  string mode_name = 19;
+  PredictionTiming timing = 20;
+}
+
+message ArrivalPredictionsRequestLog {
+  uint32 request_id = 1;
+  repeated Prediction predictions = 2;
+  string naptan_id = 3;
+  google.protobuf.Timestamp requested_at = 4;
+}
+
+message ArrivalPredictionsResponse {
+  repeated Prediction predictions = 1;
+}
