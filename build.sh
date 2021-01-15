@@ -3,6 +3,11 @@
 PROTOBUF_OUT_DIR=protobuf
 STATIC_DIR=static
 
+if [[ ! -f app.py ]]; then
+  echo "Please run in the project root" >&2
+  exit 1
+fi
+
 pip install -r requirements.txt --upgrade
 
 npm install
