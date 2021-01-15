@@ -23,3 +23,5 @@ protoc \
   prediction.proto
 
 browserify -o "$STATIC_DIR"/{bundle.js,client.js,prediction_pb.js}
+
+nunjucks-precompile "$STATIC_DIR"/views > "$STATIC_DIR"/templates.js
