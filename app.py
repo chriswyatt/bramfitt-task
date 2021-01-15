@@ -27,10 +27,13 @@ def log_arrival_predictions_request(log_pb):
 
             log_pb.request_id = request_id
 
-            txn.put(
-                pack_native_uint32(request_id),
-                log_pb.SerializeToString(),
-            )
+            if not cur.put(
+                    pack_native_uint32(request_id),
+                    log_pb.SerializeToString(),
+                    overwrite=False,
+                    append=True,
+            ):
+                raise RuntimeError
 
 
 @app.route('/arrivals/<naptan_id>/', methods=('GET', ))
