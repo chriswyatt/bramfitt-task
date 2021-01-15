@@ -11,14 +11,23 @@ nunjucksEnv.addFilter('pbDateTime', function(obj) {
 const predictionsUrl = 'http://127.0.0.1:5000/arrivals/490009333W/';
 const predictionsListUrl = 'http://127.0.0.1:5000/arrivals/';
 
+function replaceInnerHTML(oldDiv, html) {
+    let newDiv = oldDiv.cloneNode(false);
+    newDiv.innerHTML = html;
+    oldDiv.parentNode.replaceChild(newDiv, oldDiv);
+}
+
 function displayGetArrivalPredictionsResponse(responsePb) {
     let logPb = responsePb.getLog();
     let logPbObj = logPb.toObject();
     let predictionsDiv = document.getElementById('div-predictions');
 
-    predictionsDiv.innerHTML = nunjucksEnv.render(
-        'predictions_request_list.html',
-        {'logsList': [logPbObj]},
+    replaceInnerHTML(
+        predictionsDiv,
+        nunjucksEnv.render(
+            'predictions_request_list.html',
+            {'logsList': [logPbObj]},
+        ),
     );
 }
 
@@ -26,9 +35,12 @@ function displayGetArrivalPredictionsListResponse(responsePb) {
     let responsePbObj = responsePb.toObject();
     let predictionsDiv = document.getElementById('div-predictions');
 
-    predictionsDiv.innerHTML = nunjucksEnv.render(
-        'predictions_request_list.html',
-        responsePbObj,
+    replaceInnerHTML(
+        predictionsDiv,
+        nunjucksEnv.render(
+            'predictions_request_list.html',
+            responsePbObj,
+        ),
     );
 }
 
