@@ -16,7 +16,7 @@ DIRECTION_MAPPING = {
 
 pack_native_uint32 = partial(
     int.to_bytes,
-    4,
+    length=4,
     byteorder=sys.byteorder,
     signed=False,
 )
