@@ -1,0 +1,9 @@
+{% for log in logsList %}
+    <div class="div-predictions-request">
+        <p>Requested At - {{ log.requestedAt | pbDateTime }}</p>
+        {% for prediction in log.predictionsList %}
+            {% include "prediction.html" %}
+        {% endfor %}
+    </div>
+    {% if not loop.last %}<hr>{% endif %}
+{% endfor %}

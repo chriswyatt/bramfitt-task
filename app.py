@@ -33,7 +33,7 @@ def log_arrival_predictions_request(log_pb):
             )
 
 
-@app.route('/arrivals/<naptan_id>', methods=('GET', ))
+@app.route('/arrivals/<naptan_id>/', methods=('GET', ))
 def get_arrival_predictions(naptan_id):
     predictions = tuple(tfl_get_arrival_predictions(naptan_id))
 
@@ -44,8 +44,31 @@ def get_arrival_predictions(naptan_id):
 
     log_arrival_predictions_request(log_pb)
 
-    response_pb = prediction_pb2.ArrivalPredictionsResponse()
-    response_pb.predictions.extend(predictions)
+    response_pb = prediction_pb2.GetArrivalPredictionsResponse()
+    response_pb.log.CopyFrom(log_pb)
+
+    return Response(
+        response=response_pb.SerializeToString(),
+        status=200,
+        mimetype='application/protobuf',
+    )
+
+
+def db_get_arrival_prediction_request_logs():
+    with env.begin(db=request_db) as txn:
+        with txn.cursor() as cur:
+            for key, value in cur:
+                log = prediction_pb2.ArrivalPredictionsRequestLog()
+                log.ParseFromString(value)
+                yield log
+
+
+@app.route('/arrivals/', methods=('GET', ))
+def get_arrival_predictions_list():
+    log_pb_iter = db_get_arrival_prediction_request_logs()
+
+    response_pb = prediction_pb2.GetArrivalPredictionsListResponse()
+    response_pb.logs.extend(log_pb_iter)
 
     return Response(
         response=response_pb.SerializeToString(),

@@ -50,6 +50,10 @@ message ArrivalPredictionsRequestLog {
   google.protobuf.Timestamp requested_at = 4;
 }
 
-message ArrivalPredictionsResponse {
-  repeated Prediction predictions = 1;
+message GetArrivalPredictionsResponse {
+  ArrivalPredictionsRequestLog log = 1;
+}
+
+message GetArrivalPredictionsListResponse {
+  repeated ArrivalPredictionsRequestLog logs = 1;
 }

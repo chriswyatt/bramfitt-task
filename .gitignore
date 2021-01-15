@@ -8,5 +8,15 @@
 # Python
 **/__pycache__/
 
+# Node.js
+/node_modules
+/package-lock.json
+
+# Compiled Protobuf
 /protobuf/*_pb2.py
+/static/*_pb.js
+
+# Compiled JavaScript
+/static/bundle.js
+
 /bramfitt_db

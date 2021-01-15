@@ -1,0 +1,78 @@
+    <table>
+        <tr>
+            <td>ID</td>
+            <td>{{ prediction.predictionId }}</td>
+        </tr>
+        <tr>
+            <td>Operation Type</td>
+            <td>{{ prediction.operationType }}</td>
+        </tr>
+        <tr>
+            <td>Vehicle ID</td>
+            <td>{{ prediction.vehicleId }}</td>
+        </tr>
+        <tr>
+            <td>Naptan ID</td>
+            <td>{{ prediction.naptanId }}</td>
+        </tr>
+        <tr>
+            <td>Station Name</td>
+            <td>{{ prediction.stationName }}</td>
+        </tr>
+        <tr>
+            <td>Line ID</td>
+            <td>{{ prediction.lineId }}</td>
+        </tr>
+        <tr>
+            <td>Line Name</td>
+            <td>{{ prediction.lineName }}</td>
+        </tr>
+        <tr>
+            <td>Platform Name</td>
+            <td>{{ prediction.platformName }}</td>
+        </tr>
+        <tr>
+            <td>Direction</td>
+            <td>{{ prediction.direction }}</td>
+        </tr>
+        <tr>
+            <td>Bearing</td>
+            <td>{{ prediction.bearing }}</td>
+        </tr>
+        <tr>
+            <td>Destination Naptan ID</td>
+            <td>{{ prediction.destinationNaptanId }}</td>
+        </tr>
+        <tr>
+            <td>Destination Name</td>
+            <td>{{ prediction.destinationName }}</td>
+        </tr>
+        <tr>
+            <td>Prediction Sent At</td>
+            <td>{{ prediction.predictionSentAt | pbDateTime }}</td>
+        </tr>
+        <tr>
+            <td>Seconds to Station</td>
+            <td>{{ prediction.secondsToStation }}</td>
+        </tr>
+        <tr>
+            <td>Current Location</td>
+            <td>{{ prediction.currentLocation }}</td>
+        </tr>
+        <tr>
+            <td>Towards</td>
+            <td>{{ prediction.towards }}</td>
+        </tr>
+        <tr>
+            <td>Expected Arrival At</td>
+            <td>{{ prediction.expectedArrivalAt | pbDateTime }}</td>
+        </tr>
+        <tr>
+            <td>Invalidated At</td>
+            <td>{{ prediction.invalidatedAt | pbDateTime }}</td>
+        </tr>
+        <tr>
+            <td>Mode Name</td>
+            <td>{{ prediction.modeName }}</td>
+        </tr>
+    </table>
